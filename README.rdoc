@@ -1,0 +1,30 @@
+= OAuth2 Provider using DoorKeeper
+ 
+This is a todo list application which allows users to create private user lists
+
+Refer to the documentation at https://github.com/intridea/oauth2 to find out more about OAuth2 and how to execute oauth commands from the IRB
+
+Run these commands to try it out.
+
+  bundle
+  rake db:setup
+  rails s
+
+Requires Ruby 1.9.2 or later to run.
+
+======================================
+Sample Terminal Commands for reference 
+=======================================
+
+gem install oauth2
+
+irb -r oauth2
+
+app_id = "99d3bdfc87db94355a4343c54f24b18733e98b718049edaca7de0b4188539608"
+secret = "b0288a77a8afe7b5bad4ed9d88602eca90a38e55db87b069c5fb05a9f045e174"
+client = OAuth2::Client.new(app_id, secret, site: "http://localhost:3000/")
+client.auth_code.authorize_url(:redirect_uri => callback)
+access = client.auth_code.get_token('b77df49142317a6a42ea12412d2065c949c9e01ca3c9d72a478f34f153a88678', redirect_uri: callback)
+access.get('/api/tasks').parsed
+access.post('/api/tasks', params: {task: {name: "test oauth"}})
+access.get('/api/user').parsed
