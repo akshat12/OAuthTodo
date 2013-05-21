@@ -6,11 +6,19 @@ Refer to the documentation at https://github.com/intridea/oauth2 to find out mor
 
 Run these commands to try it out.
 
-  bundle
-  rake db:setup
+  bundle install
+  rake db:create
+  rake db:migrate
   rails s
 
 Requires Ruby 1.9.2 or later to run.
+
+Instructions (Browser)
+
+  First sign-up by going to localhost:3000
+  Make a sample todo list
+  Go to localhost:3000/oauth/applications to register your application and get the Application id and Application Secret
+  Click on Authorize to authorize the application
 
 Sample Terminal Commands for reference 
 
